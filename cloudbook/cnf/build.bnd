@@ -20,7 +20,7 @@
 #project:               ${basedir}
 #src:                   src
 #bin:                   bin
-#testsrc:               test
+#testsrc:               test.resource
 #testbin:               bin_test
 #target-dir:            generated
 #target:                ${project}/${target-dir}
