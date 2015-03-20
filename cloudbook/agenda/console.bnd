@@ -1,4 +1,4 @@
 Private-Package:  \
 	agenda.console
 Bundle-Activator: agenda.console.ConsoleActivator
-Bundle-Version: 0.0.0.${tstamp}
+Bundle-Version: 0.1.0.${tstamp}
