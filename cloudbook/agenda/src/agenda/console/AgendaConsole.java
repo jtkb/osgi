@@ -2,10 +2,6 @@ package agenda.console;
 
 import java.util.List;
 
-import org.apache.felix.service.command.CommandProcessor;
-
-import aQute.bnd.annotation.component.Component;
-import aQute.bnd.annotation.component.Reference;
 import agenda.api.Agenda;
 import agenda.api.Conference;
 
@@ -14,22 +10,26 @@ import agenda.api.Conference;
 //		CommandProcessor.COMMAND_FUNCTION + ":String=listConferences|addConference"
 //})
 public class AgendaConsole {
-	
+
 	private volatile Agenda agenda;
-	
-	public void listConferences(){
+
+	public void listConferences() {
 		List<Conference> conferences = agenda.listConferences();
-		for (Conference conference : conferences) {
-			System.out.println(conference.getName());
+		if (conferences != null) {
+			for (Conference conference : conferences) {
+				System.out.println(conference.getName());
+			}
+		} else {
+			System.out.println("Agenda not available");
 		}
 	}
-	
-	public void addConference(String name, String location){
+
+	public void addConference(String name, String location) {
 		agenda.addConference(new Conference(name, location));
 	}
-	
-//	@Reference
-//	public void bindAgenda(Agenda agenda){
-//		this.agenda = agenda;
-//	}
+
+	// @Reference
+	// public void bindAgenda(Agenda agenda){
+	// this.agenda = agenda;
+	// }
 }

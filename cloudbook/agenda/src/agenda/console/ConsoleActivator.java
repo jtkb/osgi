@@ -24,7 +24,7 @@ public class ConsoleActivator extends DependencyActivatorBase {
 				.setImplementation(AgendaConsole.class)
 				.add(createServiceDependency()
 						.setService(Agenda.class)
-						.setRequired(true)));
+						.setRequired(false)));
 	}
 
 	@Override
