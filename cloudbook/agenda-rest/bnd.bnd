@@ -12,12 +12,15 @@ Bundle-Version: 0.0.0.${tstamp}
 	osgi.identity;filter:='(osgi.identity=org.amdatu.web.rest.jaxrs)',\
 	osgi.identity;filter:='(osgi.identity=org.amdatu.web.rest.wink)',\
 	osgi.identity;filter:='(osgi.identity=agenda.service.simple)',\
-	osgi.identity;filter:='(osgi.identity=jackson-core-asl)',\
-	osgi.identity;filter:='(osgi.identity=jackson-mapper-asl)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.command)',\
 	osgi.identity;filter:='(osgi.identity=org.apache.felix.gogo.shell)',\
+	osgi.identity;filter:='(osgi.identity=org.amdatu.web.resource)',\
+	osgi.identity;filter:='(osgi.identity=org.amdatu.web.resourcehandler)',\
 	osgi.identity;filter:='(osgi.identity=org.amdatu.web.rest.doc.swagger.ui)',\
 	osgi.identity;filter:='(osgi.identity=org.amdatu.web.rest.doc.swagger)',\
+	osgi.identity;filter:='(osgi.identity=org.amdatu.web.httpcontext)',\
+	osgi.identity;filter:='(osgi.identity=jackson-core-asl)',\
+	osgi.identity;filter:='(osgi.identity=jackson-mapper-asl)',\
 	osgi.identity;filter:='(osgi.identity=jackson-jaxrs)'
 -runfw: org.apache.felix.framework;version='[4.4.1,4.4.1]'
 -runee: JavaSE-1.8
@@ -32,6 +35,9 @@ Bundle-Version: 0.0.0.${tstamp}
 	jackson-core-asl;version='[1.9.8,1.9.9)',\
 	jackson-jaxrs;version='[1.9.8,1.9.9)',\
 	jackson-mapper-asl;version='[1.9.8,1.9.9)',\
+	org.amdatu.web.httpcontext;version='[1.0.0,1.0.1)',\
+	org.amdatu.web.resource;version='[1.0.0,1.0.1)',\
+	org.amdatu.web.resourcehandler;version='[1.0.7,1.0.8)',\
 	org.amdatu.web.rest.doc;version='[1.2.1,1.2.2)',\
 	org.amdatu.web.rest.doc.swagger;version='[1.0.8,1.0.9)',\
 	org.amdatu.web.rest.doc.swagger.ui;version='[1.0.6,1.0.7)',\
