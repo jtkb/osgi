@@ -1,4 +1,4 @@
 Bundle-Activator: agenda.service.simple.SimpleServiceActivator
 Private-Package:  \
 	agenda.service.simple
-Bundle-Version: 0.0.0.${tstamp}
+Bundle-Version: 0.1.0.${tstamp}
