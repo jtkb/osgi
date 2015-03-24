@@ -1,0 +1,2 @@
+Private-Package: agenda.service.mongo
+Bundle-Activator: agenda.service.mongo.MongoServiceAcitivator
