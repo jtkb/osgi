@@ -20,8 +20,9 @@
 #project:               ${basedir}
 #src:                   src
 #bin:                   bin
-#testsrc:               test.resource
+#testsrc:               test
 #testbin:               bin_test
+#test-reports:          test-reports
 #target-dir:            generated
 #target:                ${project}/${target-dir}
 #build:                 ${workspace}/cnf
@@ -34,6 +35,7 @@
 #javac:                 javac
 javac.source:          1.8
 javac.target:          1.8
+#javac.profile:
 #javac.debug:           on
 
 ## Bnd Options
