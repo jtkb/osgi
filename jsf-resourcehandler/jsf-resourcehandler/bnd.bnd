@@ -1,0 +1,5 @@
+-sources: true
+-dsannotations: *
+Export-Package: jsf.resourcehandler
+Private-Package: jsf.resourcehandler.internal
+Bundle-Activator: jsf.resourcehandler.internal.JsfResourceHandlerActivator
