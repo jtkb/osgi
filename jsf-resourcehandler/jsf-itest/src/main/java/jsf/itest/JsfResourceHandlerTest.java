@@ -107,9 +107,9 @@ public class JsfResourceHandlerTest {
                 mavenBundle().groupId("org.apache.xbean").artifactId("xbean-asm5-shaded").version(VERSION_XBEAN),
                 mavenBundle().groupId("org.ow2.asm").artifactId("asm-all").version("5.0.3"),
                 //
-                bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcebundle/target/jsf-resourcebundle-1.0-SNAPSHOT.jar"),
-                bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcehandler/target/jsf-resourcehandler-1.0-SNAPSHOT.jar"),
-                bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcehandler-extender/target/jsf-resourcehandler-extender-1.0-SNAPSHOT.jar"),
+                bundle("reference:file:../jsf-resourcebundle/target/jsf-resourcebundle-1.0-SNAPSHOT.jar"),
+                bundle("reference:file:../jsf-resourcehandler/target/jsf-resourcehandler-1.0-SNAPSHOT.jar"),
+                bundle("reference:file:../jsf-resourcehandler-extender/target/jsf-resourcehandler-extender-1.0-SNAPSHOT.jar"),
                 junitBundles(),
                 systemProperty("org.osgi.service.http.hostname").value("127.0.0.1"),
                 systemProperty("org.osgi.service.http.port").value("8181"),
