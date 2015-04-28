@@ -1,0 +1,3 @@
+-sources: true
+Bundle-Activator: jsf.resourcehandler.extender.JsfResourceHandlerExtender
+Bundle-SymbolicName: jsf-resourcehandler-extender

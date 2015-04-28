@@ -6,15 +6,15 @@
 	<display-name>JSF Demo</display-name>
 
 	<!-- FIXME This should not be required, but Jetty does not pick up the listener from a TLD at the moment. -->
-    <listener>
+    <!--<listener>
         <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>
+    </listener>-->
 
-	<context-param>
+	<!--<context-param>
 		<param-name>facelets.VIEW_MAPPINGS</param-name>
 		<param-value>*.xhtml</param-value>
-	</context-param>
-  
+	</context-param>-->
+
 	<servlet>
 		<servlet-name>FacesServlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>

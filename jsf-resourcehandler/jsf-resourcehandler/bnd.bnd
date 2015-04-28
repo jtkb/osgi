@@ -1,5 +1,6 @@
 -sources: true
 -dsannotations: *
+Bundle-SymbolicName: jsf-resourcehandler
+Bundle-Activator: jsf.resourcehandler.internal.JsfResourceHandlerActivator
 Export-Package: jsf.resourcehandler
 Private-Package: jsf.resourcehandler.internal
-Bundle-Activator: jsf.resourcehandler.internal.JsfResourceHandlerActivator

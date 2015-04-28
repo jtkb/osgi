@@ -4,8 +4,6 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
               version="2.2">
     <application>
-
-        <!--<resource-handler>jsf.resourcehandler.JsfOsgiServiceResourceHandler</resource-handler>-->
-        <resource-handler>jsf.resourcehandler.JsfOsgiClassloaderResourceHandler</resource-handler>
+        <resource-handler>jsf.resourcehandler.JsfOsgiResourceHandler</resource-handler>
     </application>
 </faces-config>

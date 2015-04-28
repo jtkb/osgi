@@ -23,7 +23,7 @@ import javax.inject.Inject;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
-import static org.junit.matchers.JUnitMatchers.*;
+import static org.hamcrest.CoreMatchers.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
 
 @RunWith(PaxExam.class)
@@ -75,10 +75,11 @@ public class JsfResourceHandlerTest {
                 // Home
                 //systemProperty("org.ops4j.pax.url.mvn.localRepository").value("/home/marc/.m2/repository"),
                 // Work
-                systemProperty("org.ops4j.pax.url.mvn.localRepository").value("C:/Development/temp/maven-local-repository"),
-                repository("https://uenexus1.nbg.sdv.spb.de/nexus/content/groups/repo/").id("central"),
+                //systemProperty("org.ops4j.pax.url.mvn.localRepository").value("C:/Development/temp/maven-local-repository"),
+                //repository("https://uenexus1.nbg.sdv.spb.de/nexus/content/groups/repo/").id("central"),
 
                 // Framework
+                mavenBundle("org.apache.felix", "org.apache.felix.log").version("1.0.1"),
                 mavenBundle("org.apache.felix", "org.apache.felix.eventadmin").version("1.4.2"),
                 mavenBundle("org.apache.felix", "org.apache.felix.configadmin").version("1.8.2"),
                 mavenBundle("org.apache.felix", "org.apache.felix.scr").version("1.8.2"),
@@ -108,6 +109,7 @@ public class JsfResourceHandlerTest {
                 //
                 bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcebundle/target/jsf-resourcebundle-1.0-SNAPSHOT.jar"),
                 bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcehandler/target/jsf-resourcehandler-1.0-SNAPSHOT.jar"),
+                bundle("reference:file:C:/Development/git/osgi/jsf-resourcehandler/jsf-resourcehandler-extender/target/jsf-resourcehandler-extender-1.0-SNAPSHOT.jar"),
                 junitBundles(),
                 systemProperty("org.osgi.service.http.hostname").value("127.0.0.1"),
                 systemProperty("org.osgi.service.http.port").value("8181"),
@@ -117,7 +119,8 @@ public class JsfResourceHandlerTest {
                 systemProperty("org.ops4j.pax.web.log.ncsa.directory").value("target/logs"),
                 systemProperty("org.ops4j.pax.web.jsp.scratch.dir").value("target/paxexam/scratch-dir"),
                 systemProperty("org.ops4j.pax.url.mvn.certificateCheck").value("false"),
-                systemProperty("org.ops4j.pax.logging.DefaultServiceLog.level").value("ERROR"),
+                systemProperty("org.ops4j.pax.logging.DefaultServiceLog.level").value("WARN"),
+                frameworkProperty("felix.log.level").value("2"),
                 frameworkProperty("osgi.console").value("6666"),
                 frameworkProperty("osgi.console.enable.builtin").value("true"),
                 frameworkProperty("felix.bootdelegation.implicit").value("false")
@@ -156,7 +159,7 @@ public class JsfResourceHandlerTest {
     }
 
 
-    @Test()
+    @Test
     public void testJsfBundleActive() throws Exception{
         assertThat(Arrays.asList(bundleContext.getBundles()), hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
             @Override
@@ -166,11 +169,27 @@ public class JsfResourceHandlerTest {
         }));
     }
 
+
+    @Test
+    public void testExtenderBundleActive() throws Exception{
+        assertThat(Arrays.asList(bundleContext.getBundles()), hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
+            @Override
+            protected boolean matchesSafely(Bundle item) {
+                return "jsf-resourcehandler-extender".equals(item.getSymbolicName()) && item.getState() == Bundle.ACTIVE;
+            }
+        }));
+    }
+
+    @Test
+    public void testJsf() throws Exception {
+        httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler/index.xhtml", "Hello JSF");
+    }
+
+
     @Test
     public void testJsfResourceHandler() throws Exception {
         httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler/index.xhtml", "Hello Template");
     }
-
 
 
     protected Bundle installAndStartBundle(String bundlePath)

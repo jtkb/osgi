@@ -13,6 +13,7 @@
 		<module>jsf-application</module>
 		<module>jsf-resourcebundle</module>
 		<module>jsf-resourcehandler</module>
+		<module>jsf-resourcehandler-extender</module>
 		<module>jsf-itest</module>
 	</modules>
 

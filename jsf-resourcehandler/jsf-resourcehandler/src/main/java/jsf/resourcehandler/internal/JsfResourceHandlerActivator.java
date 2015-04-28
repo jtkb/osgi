@@ -1,5 +1,6 @@
 package jsf.resourcehandler.internal;
 
+import jsf.resourcehandler.JsfResourcesRegistry;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 import org.osgi.util.tracker.ServiceTracker;
@@ -8,12 +9,12 @@ public class JsfResourceHandlerActivator implements BundleActivator{
 
     private static JsfResourceHandlerActivator INSTANCE;
 
-    private ServiceTracker<JsfResourceHandlerService, JsfResourceHandlerService> tracker;
+    private ServiceTracker<JsfResourcesRegistry, JsfResourcesRegistry> tracker;
 
     @Override
     public void start(BundleContext context) throws Exception {
         INSTANCE = this;
-        tracker = new ServiceTracker<JsfResourceHandlerService, JsfResourceHandlerService>(context, JsfResourceHandlerService.class.getName(), null);
+        tracker = new ServiceTracker<JsfResourcesRegistry, JsfResourcesRegistry>(context, JsfResourcesRegistry.class.getName(), null);
         tracker.open();
     }
 
@@ -24,7 +25,7 @@ public class JsfResourceHandlerActivator implements BundleActivator{
     }
 
 
-    public JsfResourceHandlerService getJsfResourceHandlerService(){
+    public JsfResourcesRegistry getJsfResourcesRegistry(){
         return tracker.getService();
     }
 
