@@ -27,7 +27,7 @@
 		<version.felix-log>1.0.1</version.felix-log>
 		<version.felix-dm>3.2.0</version.felix-dm>
 		<version.slf4j>1.7.12</version.slf4j>
-		<version.pax-web>4.1.1</version.pax-web>
+		<version.pax-web>4.1.2</version.pax-web>
 	</properties>
 
 

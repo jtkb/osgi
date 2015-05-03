@@ -30,7 +30,7 @@ import static org.ops4j.pax.exam.CoreOptions.*;
 @ExamReactorStrategy(PerClass.class)
 public class JsfResourceHandlerTest {
 
-    protected static final String VERSION_PAX_WEB = "4.1.1";
+    protected static final String VERSION_PAX_WEB = "4.1.2";
     protected static final String VERSION_PAX_URL = "2.4.1";
     protected static final String VERSION_XBEAN = "4.1";
     protected static final String VERSION_JETTY = "9.2.10.v20150310";
