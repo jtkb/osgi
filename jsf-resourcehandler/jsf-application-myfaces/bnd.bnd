@@ -1,7 +1,7 @@
 -sources: true
 -wab: src/main/webapp
-Bundle-SymbolicName: jsf-application
-Web-ContextPath: osgi-resourcehandler
+Bundle-SymbolicName: jsf-application-myfaces
+Web-ContextPath: osgi-resourcehandler-myfaces
 DynamicImport-Package: org.apache.myfaces.*
 Import-Package: \
 	jsf.resourcehandler,\

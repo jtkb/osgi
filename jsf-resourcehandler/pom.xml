@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
 
-    <groupId>osgi</groupId>
-    <artifactId>jsf-resourcehandler-parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>pom</packaging>
+	<groupId>osgi</groupId>
+	<artifactId>jsf-resourcehandler-parent</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
 
-	<modules>		
-		<module>jsf-application</module>
+	<modules>
+		<module>jsf-application-myfaces</module>
+		<module>jsf-application-mojarra</module>
 		<module>jsf-resourcebundle</module>
 		<module>jsf-resourcehandler</module>
 		<module>jsf-resourcehandler-extender</module>
@@ -20,14 +20,16 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<version.osgi>5.0.0</version.osgi>
-		<version.myfaces>2.2.7</version.myfaces>
+		<version.jsf>2.2</version.jsf>
+		<version.myfaces>2.2.8</version.myfaces>
+		<version.mojarra>2.2.9</version.mojarra>
 		<version.servlet>3.1.0</version.servlet>
 		<version.el>2.2.5</version.el>
 		<version.felix>4.4.1</version.felix>
 		<version.felix-log>1.0.1</version.felix-log>
 		<version.felix-dm>3.2.0</version.felix-dm>
 		<version.slf4j>1.7.12</version.slf4j>
-		<version.pax-web>4.1.2</version.pax-web>
+		<version.pax-web>4.1.4</version.pax-web>
 	</properties>
 
 
@@ -57,6 +59,11 @@
 				<groupId>org.apache.myfaces.core</groupId>
 				<artifactId>myfaces-impl</artifactId>
 				<version>${version.myfaces}</version>
+			</dependency>
+			<dependency>
+				<groupId>org.glassfish</groupId>
+				<artifactId>javax.faces</artifactId>
+				<version>${version.mojarra}</version>
 			</dependency>
 			<dependency>
 				<groupId>javax.servlet</groupId>

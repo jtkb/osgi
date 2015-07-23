@@ -5,20 +5,19 @@
 	id="testing-pax-web-jsf" version="3.0">
 	<display-name>JSF Demo</display-name>
 
-	<!-- FIXME This should not be required, but Jetty does not pick up the listener from a TLD at the moment. -->
-    <!--<listener>
-        <listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
-    </listener>-->
+	<!-- FIXME This should not be required, but Jetty does not pick up the listener 
+		from a TLD at the moment. -->
+	<listener>
+		<listener-class>org.apache.myfaces.webapp.StartupServletContextListener</listener-class>
+	</listener>
 
-	<!--<context-param>
-		<param-name>facelets.VIEW_MAPPINGS</param-name>
-		<param-value>*.xhtml</param-value>
-	</context-param>-->
+	<!--<context-param> <param-name>facelets.VIEW_MAPPINGS</param-name> <param-value>*.xhtml</param-value> 
+		</context-param> -->
 
 	<servlet>
 		<servlet-name>FacesServlet</servlet-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
-		<load-on-startup>1</load-on-startup>
+		<!-- <load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>FacesServlet</servlet-name>
