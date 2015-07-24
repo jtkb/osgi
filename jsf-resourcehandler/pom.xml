@@ -11,7 +11,8 @@
 	<modules>
 		<module>jsf-application-myfaces</module>
 		<module>jsf-application-mojarra</module>
-		<module>jsf-resourcebundle</module>
+		<module>jsf-resourcebundle-one</module>
+		<module>jsf-resourcebundle-two</module>
 		<module>jsf-resourcehandler</module>
 		<module>jsf-resourcehandler-extender</module>
 		<module>jsf-itest</module>

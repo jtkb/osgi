@@ -9,7 +9,7 @@
 		<artifactId>jsf-resourcehandler-parent</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
-	<artifactId>jsf-resourcebundle</artifactId>
+	<artifactId>jsf-resourcebundle-one</artifactId>
 
 	<dependencies>
 		<dependency>

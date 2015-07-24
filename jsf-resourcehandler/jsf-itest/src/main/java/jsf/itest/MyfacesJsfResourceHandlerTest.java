@@ -106,7 +106,7 @@ public class MyfacesJsfResourceHandlerTest extends BaseTest {
 
 	@Test
 	public void testJsfResourceHandler() throws Exception {
-		httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Hello Template");
+		httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Customized Footer");
 	}
 
 }

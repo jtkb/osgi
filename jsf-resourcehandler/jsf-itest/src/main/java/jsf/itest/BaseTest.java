@@ -28,7 +28,7 @@ public abstract class BaseTest {
 	protected static final String VERSION_PAX_URL = "2.4.1";
 	protected static final String VERSION_XBEAN = "4.1";
 	protected static final String VERSION_JETTY = "9.2.10.v20150310";
-	
+
 	@Inject
 	protected BundleContext bundleContext;
 
@@ -36,7 +36,7 @@ public abstract class BaseTest {
 
 	protected HttpTestClient httpTestClient;
 	protected WebListener webListener;
-	
+
 	@After
 	public void tearDown() throws Exception {
 		if (httpTestClient != null) {
@@ -57,7 +57,7 @@ public abstract class BaseTest {
 				// systemProperty("org.ops4j.pax.url.mvn.localRepository").value("C:/Development/temp/maven-local-repository"),
 				// repository("https://uenexus1.nbg.sdv.spb.de/nexus/content/groups/repo/").id("central"),
 
-		// Framework
+				// Framework
 				mavenBundle("org.apache.felix", "org.apache.felix.log").version("1.0.1"),
 				mavenBundle("org.apache.felix", "org.apache.felix.eventadmin").version("1.4.2"),
 				mavenBundle("org.apache.felix", "org.apache.felix.configadmin").version("1.8.2"),
@@ -86,8 +86,9 @@ public abstract class BaseTest {
 				mavenBundle().groupId("org.apache.xbean").artifactId("xbean-bundleutils").version(VERSION_XBEAN),
 				mavenBundle().groupId("org.apache.xbean").artifactId("xbean-asm5-shaded").version(VERSION_XBEAN),
 				mavenBundle().groupId("org.ow2.asm").artifactId("asm-all").version("5.0.3"),
-				//
-				bundle("reference:file:../jsf-resourcebundle/target/jsf-resourcebundle-1.0-SNAPSHOT.jar"),
+				// 
+				bundle("reference:file:../jsf-resourcebundle-one/target/jsf-resourcebundle-one-1.0-SNAPSHOT.jar"),
+				bundle("reference:file:../jsf-resourcebundle-two/target/jsf-resourcebundle-two-1.0-SNAPSHOT.jar"),
 				bundle("reference:file:../jsf-resourcehandler/target/jsf-resourcehandler-1.0-SNAPSHOT.jar"),
 				bundle("reference:file:../jsf-resourcehandler-extender/target/jsf-resourcehandler-extender-1.0-SNAPSHOT.jar"),
 				junitBundles(), systemProperty("org.osgi.service.http.hostname").value("127.0.0.1"),
@@ -103,7 +104,7 @@ public abstract class BaseTest {
 				frameworkProperty("osgi.console.enable.builtin").value("true"),
 				frameworkProperty("felix.bootdelegation.implicit").value("false"));
 	}
-	
+
 	protected Bundle installAndStartBundle(String bundlePath) throws BundleException, InterruptedException {
 		final Bundle bundle = bundleContext.installBundle(bundlePath);
 		bundle.start();

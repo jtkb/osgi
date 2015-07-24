@@ -1,0 +1,4 @@
+-sources: true
+Bundle-SymbolicName: jsf-resourcebundle-two
+Jsf-Resource: true
+Include-Resource: src/main/resources/
