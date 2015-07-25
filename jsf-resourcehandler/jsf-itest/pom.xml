@@ -27,7 +27,12 @@
     <dependencies>
         <dependency>
             <groupId>osgi</groupId>
-            <artifactId>jsf-application</artifactId>
+            <artifactId>jsf-application-myfaces</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>osgi</groupId>
+            <artifactId>jsf-application-mojarra</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

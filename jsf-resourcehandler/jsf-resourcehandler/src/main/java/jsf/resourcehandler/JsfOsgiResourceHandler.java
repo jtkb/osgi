@@ -43,7 +43,7 @@ public class JsfOsgiResourceHandler extends ResourceHandlerWrapper{
         if(resource == null) {
             // lookup resource in jsf-resource bundles
             SimpleJsfResourcesRegistry service = (SimpleJsfResourcesRegistry)JsfResourceHandlerActivator.getInstance().getJsfResourcesRegistry();
-            resource = service.createResource(resourceName);
+            resource = service.createResource(resourceName, libraryName);
             System.out.println("=================== RESOURCE OSGI: " + resource);
         }
         return resource;
