@@ -99,16 +99,13 @@ public class MyfacesJsfResourceHandlerTest extends BaseTest {
 				}));
 	}
 
-	@Test
-	public void testJsf() throws Exception {
-		httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Hello JSF");
-	}
 
 	@Test
 	public void testJsfResourceHandler() throws Exception {
-		String response = httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Customized Footer");
-		System.out.println(response);
+		String response = httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Hello JSF");
+		assertThat("Standard header shall be loaded from resourcebundle-one", response, containsString("Standard Header"));
 		assertThat("Images shall be loaded from resourcebundle-one", response, containsString("iceland.jpg"));
+		assertThat("Customized footer shall be loaded from resourcebundle-two", response, containsString("Customized Footer"));
 	}
 
 }
