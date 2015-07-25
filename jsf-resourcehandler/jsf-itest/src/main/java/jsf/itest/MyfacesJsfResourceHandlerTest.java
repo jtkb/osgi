@@ -76,19 +76,25 @@ public class MyfacesJsfResourceHandlerTest extends BaseTest {
 				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-servlet").version(VERSION_JETTY));
 	}
 
+	/**
+	 * Does multiple assertions in one test since container-startup is quite long
+	 * <pre>
+	 * <ul>
+	 * 	<li>Check if jsf-resourcehandler-extender is started</li>
+	 * 	<li>Check if application under test (jsf-application-myfaces) is started
+	 * 	<li>Test actual resource-handler
+	 * 		<ul>
+	 * 			<li>Test for occurence of 'Hello JSF' (jsf-application-myfaces)</li>
+	 * 			<li>Test for occurence of 'Standard Header' (jsf-resource-bundle-one)</li>
+	 * 			<li>Test for occurence of 'iceland.jpg' (jsf-resourcebundle-one)</li>
+	 * 			<li>Test for occurence of 'Customized Footer' (jsf-resourcebundle-two)</li>
+	 * 		</ul>
+	 * 	</li>
+	 * </ul>
+	 * @throws Exception
+	 */
 	@Test
-	public void testJsfBundleActive() throws Exception {
-		assertThat(Arrays.asList(bundleContext.getBundles()),
-				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
-					@Override
-					protected boolean matchesSafely(Bundle item) {
-						return "jsf-application-myfaces".equals(item.getSymbolicName()) && item.getState() == Bundle.ACTIVE;
-					}
-				}));
-	}
-
-	@Test
-	public void testExtenderBundleActive() throws Exception {
+	public void testJsfResourceHandler() throws Exception {
 		assertThat(Arrays.asList(bundleContext.getBundles()),
 				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
 					@Override
@@ -97,11 +103,13 @@ public class MyfacesJsfResourceHandlerTest extends BaseTest {
 								&& item.getState() == Bundle.ACTIVE;
 					}
 				}));
-	}
-
-
-	@Test
-	public void testJsfResourceHandler() throws Exception {
+		assertThat(Arrays.asList(bundleContext.getBundles()),
+				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
+					@Override
+					protected boolean matchesSafely(Bundle item) {
+						return "jsf-application-myfaces".equals(item.getSymbolicName()) && item.getState() == Bundle.ACTIVE;
+					}
+				}));
 		String response = httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-myfaces/index.xhtml", "Hello JSF");
 		assertThat("Standard header shall be loaded from resourcebundle-one", response, containsString("Standard Header"));
 		assertThat("Images shall be loaded from resourcebundle-one", response, containsString("iceland.jpg"));

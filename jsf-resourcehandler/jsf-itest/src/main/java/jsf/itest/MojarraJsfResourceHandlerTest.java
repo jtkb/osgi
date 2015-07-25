@@ -86,19 +86,27 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 	}
 
 	
+	/**
+	 * Does multiple assertions in one test since container-startup is quite long
+	 * <pre>
+	 * <ul>
+	 * 	<li>Check if jsf-resourcehandler-extender is started</li>
+	 * 	<li>Check if application under test (jsf-application-mojarra) is started
+	 * 	<li>Test actual resource-handler
+	 * 		<ul>
+	 * 			<li>Test for occurence of 'Hello JSF' (jsf-application-mojarra)</li>
+	 * 			<li>Test for occurence of 'Standard Header' (jsf-resource-bundle-one)</li>
+	 * 			<li>Test for occurence of 'iceland.jpg' (jsf-resourcebundle-one)</li>
+	 * 			<li>Test for occurence of 'Customized Footer' (jsf-resourcebundle-two)</li>
+	 * 		</ul>
+	 * 	</li>
+	 * </ul>
+	 * </pre>
+	 * @throws Exception
+	 */
 	@Test
-	public void testJsfBundleActive() throws Exception {
-		assertThat(Arrays.asList(bundleContext.getBundles()),
-				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
-					@Override
-					protected boolean matchesSafely(Bundle item) {
-						return "jsf-application-mojarra".equals(item.getSymbolicName()) && item.getState() == Bundle.ACTIVE;
-					}
-				}));
-	}
-
-	@Test
-	public void testExtenderBundleActive() throws Exception {
+	public void testJsfResourceHandler() throws Exception {
+		// check 
 		assertThat(Arrays.asList(bundleContext.getBundles()),
 				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
 					@Override
@@ -107,16 +115,17 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 								&& item.getState() == Bundle.ACTIVE;
 					}
 				}));
-	}
-
-	@Test
-	public void testJsf() throws Exception {
-		httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-mojarra/index.xhtml", "Hello JSF");
-	}
-
-	@Test
-	public void testJsfResourceHandler() throws Exception {
-		httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-mojarra/index.xhtml", "Hello Template");
+		assertThat(Arrays.asList(bundleContext.getBundles()),
+				hasItem(new CustomTypeSafeMatcher<Bundle>("pax-web-jsf Bundle (active)") {
+					@Override
+					protected boolean matchesSafely(Bundle item) {
+						return "jsf-application-mojarra".equals(item.getSymbolicName()) && item.getState() == Bundle.ACTIVE;
+					}
+				}));
+		String response = httpTestClient.testWebPath("http://127.0.0.1:8181/osgi-resourcehandler-mojarra/index.xhtml", "Hello JSF");
+		assertThat("Standard header shall be loaded from resourcebundle-one", response, containsString("Standard Header"));
+		assertThat("Images shall be loaded from resourcebundle-one", response, containsString("iceland.jpg"));
+		assertThat("Customized footer shall be loaded from resourcebundle-two", response, containsString("Customized Footer"));
 	}
 
 }
