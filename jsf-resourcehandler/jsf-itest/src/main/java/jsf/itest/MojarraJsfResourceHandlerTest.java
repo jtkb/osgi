@@ -1,32 +1,24 @@
 package jsf.itest;
 
 import org.hamcrest.CustomTypeSafeMatcher;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
 import org.ops4j.pax.exam.Option;
-import org.ops4j.pax.exam.OptionUtils;
 import org.ops4j.pax.exam.junit.PaxExam;
 import org.ops4j.pax.exam.spi.reactors.ExamReactorStrategy;
 import org.ops4j.pax.exam.spi.reactors.PerClass;
 import org.ops4j.pax.web.itest.base.HttpTestClient;
-import org.ops4j.pax.web.itest.base.WaitCondition;
-import org.ops4j.pax.web.itest.base.WebListenerImpl;
-import org.ops4j.pax.web.service.spi.WebListener;
 import org.osgi.framework.Bundle;
-import org.osgi.framework.BundleContext;
-import org.osgi.framework.BundleException;
 
-import javax.faces.application.ResourceDependencies;
-import javax.inject.Inject;
 import java.util.Arrays;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.CoreMatchers.*;
 import static org.ops4j.pax.exam.CoreOptions.*;
+import static org.ops4j.pax.exam.OptionUtils.combine;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
@@ -46,7 +38,7 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 
 	@Configuration
 	public Option[] config() {
-		return OptionUtils.combine(configureBase(),
+		return combine(combine(configureBase(), configureJetty()),
 				// Necessary Properties for Mojarra
 //				frameworkProperty("org.osgi.framework.system.packages.extra")
 //					.value("com.sun.org.apache.xalan.internal.res, "
@@ -55,7 +47,7 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 //							+ "com.sun.org.apache.xpath.internal, "
 //							+ "com.sun.org.apache.xpath.internal.jaxp, "
 //							+ "com.sun.org.apache.xpath.internal.objects"),
-				// MyFaces
+				// Mojarra
 				mavenBundle("javax.faces", "javax.faces-api").version("2.2"),
 				mavenBundle("org.glassfish", "javax.faces").version("2.2.9"),
 				mavenBundle("javax.el", "javax.el-api").version("2.2.1"),
@@ -71,18 +63,8 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 				mavenBundle().groupId("org.ops4j.pax.web").artifactId("pax-web-api").version(VERSION_PAX_WEB),
 				mavenBundle().groupId("org.ops4j.pax.web").artifactId("pax-web-spi").version(VERSION_PAX_WEB),
 				mavenBundle().groupId("org.ops4j.pax.web").artifactId("pax-web-runtime").version(VERSION_PAX_WEB),
-				mavenBundle().groupId("org.ops4j.pax.web").artifactId("pax-web-jetty").version(VERSION_PAX_WEB),
-				// Jetty
-				mavenBundle().groupId("javax.servlet").artifactId("javax.servlet-api").version("3.1.0"),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-util").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-io").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-http").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-continuation").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-server").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-client").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-security").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-xml").version(VERSION_JETTY),
-				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-servlet").version(VERSION_JETTY));
+				mavenBundle().groupId("org.ops4j.pax.web").artifactId("pax-web-jetty").version(VERSION_PAX_WEB)
+				);
 	}
 
 	

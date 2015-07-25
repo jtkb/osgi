@@ -105,6 +105,22 @@ public abstract class BaseTest {
 				frameworkProperty("felix.bootdelegation.implicit").value("false"));
 	}
 
+	public Option[] configureJetty(){
+		return options(
+				// Jetty
+				mavenBundle().groupId("javax.servlet").artifactId("javax.servlet-api").version("3.1.0"),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-util").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-io").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-http").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-continuation").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-server").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-client").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-security").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-xml").version(VERSION_JETTY),
+				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-servlet").version(VERSION_JETTY)
+				);
+	}
+	
 	protected Bundle installAndStartBundle(String bundlePath) throws BundleException, InterruptedException {
 		final Bundle bundle = bundleContext.installBundle(bundlePath);
 		bundle.start();
