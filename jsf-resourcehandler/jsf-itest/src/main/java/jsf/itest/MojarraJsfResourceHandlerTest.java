@@ -3,6 +3,7 @@ package jsf.itest;
 import org.hamcrest.CustomTypeSafeMatcher;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.ops4j.pax.exam.Configuration;
@@ -19,6 +20,7 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleException;
 
+import javax.faces.application.ResourceDependencies;
 import javax.inject.Inject;
 import java.util.Arrays;
 
@@ -28,6 +30,7 @@ import static org.ops4j.pax.exam.CoreOptions.*;
 
 @RunWith(PaxExam.class)
 @ExamReactorStrategy(PerClass.class)
+@Ignore
 public class MojarraJsfResourceHandlerTest extends BaseTest {
 
 	@Before
@@ -82,6 +85,7 @@ public class MojarraJsfResourceHandlerTest extends BaseTest {
 				mavenBundle().groupId("org.eclipse.jetty").artifactId("jetty-servlet").version(VERSION_JETTY));
 	}
 
+	
 	@Test
 	public void testJsfBundleActive() throws Exception {
 		assertThat(Arrays.asList(bundleContext.getBundles()),
